@@ -1,7 +1,7 @@
 Mesh-clustered Gaussian Process (mcGP) emulator for partial differential
 equation systems (Reproducibility)
 ================
-August 23, 2023
+January 15, 2024
 
 This instruction aims to reproduce the results in the paper
 “*Mesh-clustered Gaussian Process emulator for partial differential
@@ -343,10 +343,10 @@ knitr::kable(out)
 
 |                         | mcGP   | uGP   | iGP    | pcaGP  | FEM     |
 |:------------------------|:-------|:------|:-------|:-------|:--------|
-| RMSE                    | 8.741  | 9.064 | 15.385 | 24.880 | 0.000   |
-| CRPS                    | 2.276  | 2.410 | 5.537  | 15.178 | 0.000   |
-| fitting time            | 95.992 | 9.864 | 9.278  | 0.099  | 0.000   |
-| prediction time per run | 2.84   | 0.12  | 18.75  | 0.05   | 1266.33 |
+| RMSE                    | 8.742  | 9.064 | 15.434 | 24.880 | 0.000   |
+| CRPS                    | 2.276  | 2.410 | 5.321  | 15.183 | 0.000   |
+| fitting time            | 36.876 | 8.485 | 8.106  | 0.058  | 0.000   |
+| prediction time per run | 2.42   | 0.10  | 14.95  | 0.06   | 1266.33 |
 
 ##### Section 5.2: Reproducing Figure 8
 
@@ -354,7 +354,7 @@ Figure 8 shows the design points and the hyperparameter estimates
 $\hat{\tau}_k$ and $\hat{\boldsymbol{\theta}}_k$.
 
 ``` r
-doe.df <- data.frame(t(t(X) * c(0.04,1) + c(0.01,0.5)))
+doe.df <- data.frame(t(t(X) * c(0.09,1.5) + c(0.01,0.5)))
 colnames(doe.df) <- c("nu", "v")
 # design points
 g1 <- ggplot(doe.df, aes(x=nu, y=v)) + geom_point(size=3)+theme_classic()
@@ -493,12 +493,12 @@ rownames(out) <- c("RMSE", "CRPS", "fitting time", "prediction time per run")
 knitr::kable(out)
 ```
 
-|                         | mcGP   | uGP    | iGP    | pcaGP  | FEM     |
-|:------------------------|:-------|:-------|:-------|:-------|:--------|
-| RMSE                    | 9.800  | 9.823  | 11.074 | 13.986 | 0.000   |
-| CRPS                    | 3.204  | 3.236  | 3.617  | 6.753  | 0.000   |
-| fitting time            | 313.76 | 134.59 | 67.75  | 0.19   | 0.00    |
-| prediction time per run | 17.37  | 0.71   | 99.64  | 0.33   | 4020.70 |
+|                         | mcGP    | uGP     | iGP    | pcaGP  | FEM     |
+|:------------------------|:--------|:--------|:-------|:-------|:--------|
+| RMSE                    | 9.800   | 9.823   | 11.096 | 13.986 | 0.000   |
+| CRPS                    | 3.204   | 3.236   | 3.616  | 6.753  | 0.000   |
+| fitting time            | 122.476 | 114.735 | 53.689 | 0.101  | 0.000   |
+| prediction time per run | 15.27   | 0.55    | 82.76  | 0.40   | 4020.70 |
 
 ##### Section 5.3: Reproducing Figure 12
 
